@@ -45,4 +45,4 @@ async def receive(request: Request):
 
     message_id = future.result()
 
-    return {"message_id": message_id}
+    return {"_type": "status"}

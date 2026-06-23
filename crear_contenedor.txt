@@ -1,0 +1,7 @@
+docker run -d \
+  --name whereami \
+  -p 9000:9000 \
+  -v /home/kiko/whereami/whereami-500117-329e61b8c6a2.json:/app/key.json \
+  -e GOOGLE_APPLICATION_CREDENTIALS=/app/key.json \
+  --restart unless-stopped \
+  whereami
