@@ -1,0 +1,63 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: whereami-500117
+    schema: locations_us
+    tables:
+      - name: user_locations
+
+models:
+  - name: silver_whereami
+    description: "Deduplicated and cleaned user location data"
+    columns:
+
+      - name: user
+        description: "User identifier"
+        data_tests:
+          - not_null
+
+      - name: acc
+        description: "GPS accuracy"
+
+      - name: vac
+        description: "Vertical accuracy"
+
+      - name: lat
+        description: "Latitude of the location"
+        data_tests:
+          - not_null
+
+      - name: lon
+        description: "Longitude of the location"
+        data_tests:
+          - not_null
+
+      - name: alt
+        description: "Altitude in meters"
+
+      - name: vel
+        description: "Velocity at the location"
+
+      - name: tst
+        description: "Unix timestamp of the location"
+        data_tests:
+          - not_null
+
+      - name: cog
+        description: "Course over ground"
+
+      - name: rn
+        description: "Row number used for deduplication"
+
+      - name: date_time
+        description: "Location timestamp converted to UTC timestamp"
+
+      - name: prev_lon
+        description: "Longitude of the previous location"
+
+      - name: prev_lat
+        description: "Latitude of the previous location"
+
+      - name: distance
+        description: "Distance in meters between the current and previous location"
