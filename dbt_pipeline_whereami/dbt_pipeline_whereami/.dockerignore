@@ -3,7 +3,9 @@ keyfile.json
 profiles.yml
 .git
 .gitignore
+.dockerignore
 logs/
 target/
+dbt_packages/
 __pycache__/
 *.pyc

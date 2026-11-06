@@ -1,8 +1,14 @@
+
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# Instalar dbt y el adaptador de BigQuery
+# Instalar Git
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
+
+# Instalar dbt y adaptador BigQuery
 RUN pip install --no-cache-dir \
     dbt-core==1.12.5 \
     dbt-bigquery==1.12.1
@@ -10,9 +16,8 @@ RUN pip install --no-cache-dir \
 # Copiar proyecto
 COPY . .
 
-# Instalar dependencias de dbt
+# Instalar dependencias dbt
 RUN dbt deps
 
-# Ejecutar dbt
 ENTRYPOINT ["dbt"]
-CMD ["build", "--profiles-dir", "/app"]
+CMD ["build"]
